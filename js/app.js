@@ -98,7 +98,7 @@ function showBalance() {
 // fonction pour soumettre le formulaire de depense 
 
 function submitExpenseForm() {
-  const expenseValue = expenseInput.value;
+  const expenseValue = expenseInput.value.trim();
   const amountValue = amountInput.value;
   if (expenseValue === "" || amountValue === "" || amountValue < 0) {
     notification(cardNotification, "Ajout de depense", "Le montant de votre depense doit etre positive");
@@ -150,6 +150,7 @@ function submitExpenseForm() {
     }
 
     showBalance();
+    window.location.reload()
   }
   saveToLocalStorage()
 
@@ -292,6 +293,7 @@ function deleteExpense(element) {
     myDoughnutChart.data.labels.splice(supprimIndex, 1)
     myDoughnutChart.data.datasets[0].data.splice(supprimIndex, 1)
     myDoughnutChart.data.datasets[0].backgroundColor.splice(supprimIndex, 1)
+    window.location.reload()
     // Mettre à jour le graphique
     myDoughnutChart.update();
   }
@@ -387,11 +389,6 @@ let myDoughnutChart = new Chart(myChart, {
   return color;
 }
 
-
-localStorage.setItem("name", "Souleymane");
-localStorage.setItem("age", "21");
-
-console.log(localStorage.getItem("name"));
 
 
  function saveToLocalStorage() {
